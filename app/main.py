@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.api import routes as api_routes
 
 app = FastAPI(title="FastAPI + React Skeleton")
 
@@ -11,7 +12,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.get("/api/hello")
-async def hello():
-    return {"message": "Hello from FastAPI"}
+app.include_router(api_routes.router)
